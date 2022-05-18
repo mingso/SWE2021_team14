@@ -1,0 +1,13 @@
+
+.d-flex{
+    width: 500px;
+}
+.container{
+    align-items: center;
+}
+h2{
+    text-align: center;
+}
+#fontSelect{
+    align-self: flex-end;
+}
