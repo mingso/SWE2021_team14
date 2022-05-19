@@ -23,6 +23,7 @@ function drawText1(text) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.font = `${textSetting['fontWeight']} ${textSetting['fontSize']}px ${textSetting['fontFamily']}`;
+  console.log(ctx.font);
 
   let lines = text.split('/');
   lines.forEach((line, index) => {
@@ -104,7 +105,7 @@ var memeIndex = 0;
 var memeImages = ["./meme_image/말대꾸.png", "./meme_image/개비스콘.jpg", "./meme_image/아나킨파드메.jpg"];
 textSetting = {};
 textSetting['imageIndex'] = memeIndex;
-textSetting['fontFamily'] = 'MalgunGothic';
+textSetting['fontFamily'] = 'Arial';
 textSetting['fontSize'] = 10;
 textSetting['fontColor'] = '#000000';
 textSetting['fontWeight'] = 'normal';
@@ -160,15 +161,55 @@ window.onload = function() {
   $('.form-select.fontSelect').on('change', function () {
     var selected = $('.form-select.fontSelect option:selected').val();
     textSetting['fontFamily'] = selected;
+    console.log(selected);
+    let text = document.getElementById('inputForm').value
+    draw(memeImages[memeIndex])
+    switch(memeIndex) {
+      case 0:
+        drawText1(text);
+        break;
+      case 1:
+        drawText2(text);
+        break;
+      case 2:
+        drawText3(text);
+        break;
+    }
   });
 
   $('.form-select.fontSizeSelect').on('change', function () {
     var selected = $('.form-select.fontSizeSelect option:selected').val();
     textSetting['fontSize'] = selected;
+    draw(memeImages[memeIndex])
+    let text = document.getElementById('inputForm').value
+    switch(memeIndex) {
+      case 0:
+        drawText1(text);
+        break;
+      case 1:
+        drawText2(text);
+        break;
+      case 2:
+        drawText3(text);
+        break;
+    }
   });
 
   $('.form-select.fontBoldSelect').on('change', function () {
     var selected = $('.form-select.fontBoldSelect option:selected').val();
     textSetting['fontWeight'] = selected;
+    draw(memeImages[memeIndex])
+    let text = document.getElementById('inputForm').value
+    switch(memeIndex) {
+      case 0:
+        drawText1(text);
+        break;
+      case 1:
+        drawText2(text);
+        break;
+      case 2:
+        drawText3(text);
+        break;
+    }
   });
 }
