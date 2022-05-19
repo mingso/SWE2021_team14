@@ -42,20 +42,36 @@ function drawText2(text) {
   ctx.font = `${textSetting['fontWeight']} ${textSetting['fontSize']}px ${textSetting['fontFamily']}`;
 
   let lines = text.split('/');
+
+  console.log(textSetting['fontColor']);
+  ctx.lineWidth = 4;
   lines.forEach((line, index) => {
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = textSetting['fontWeight']
-    ctx.strokeText(
-      line,
-      canvas.width / 2,
-      canvas.height - 100,
-    )
+    if (index === 0) {
+      let words = line.split(',');
+      let coordinates = [230, 220, 330, 300, 200, 320]
+      ctx.strokeStyle = '#b14949'
+      words.forEach((word, idx) => {
+        ctx.strokeText(
+          word, coordinates[idx * 2], coordinates[idx * 2 + 1],
+        )
 
-    ctx.fillStyle = textSetting['fontColor'];
-    ctx.fillText(
-      line, canvas.width /2, h
-    );
+        ctx.fillStyle = textSetting['fontColor'];
+        ctx.fillText(
+          word, coordinates[idx * 2], coordinates[idx * 2 + 1],
+        );
+      })
+    } else if (index === 1) {
+      ctx.strokeStyle = '#75b9ff'
 
+      ctx.strokeText(
+        line, canvas.width / 2 + 10, 600,
+      )
+
+      ctx.fillStyle = textSetting['fontColor'];
+      ctx.fillText(
+        line, canvas.width /2 + 10, 600
+      );
+    }
   })
 }
 
@@ -68,29 +84,7 @@ function drawText3(text) {
 
   let lines = text.split('/');
   lines.forEach((line, index) => {
-    if (textSetting['fontSize'] === '#FFFFFF') {
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = textSetting['fontWeight']
-      ctx.strokeText(
-        line,
-        canvas.width / 2,
-        canvas.height - 100,
-      )
-    }
-
-    if (memeIndex === 0) {
-      ctx.fillStyle = textSetting['fontColor'];
-      var h = 135;
-      if (index === 1) {
-        h = 640;
-      }
-      ctx.fillText(
-        line, canvas.width /2, h
-      );
-    } else if(memeIndex === 2){
-
-    }
-
+    
   })
 }
 
