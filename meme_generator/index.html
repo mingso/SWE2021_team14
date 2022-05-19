@@ -5,8 +5,81 @@
     <title>Meme Generator</title>
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="index.js"></script>
+	  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+		</script>
+    <style>
+      .container{
+        width: 500px;
+      }
+    </style>
   </head>
   <body>
-
+    <div class="container">
+      <h2>Meme 생성기</h2>
+      <div class = "d-flex align-items-center">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownImage" data-bs-toggle="dropdown" aria-expanded="false">
+            Select Meme
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownImage">
+            <li><a class="dropdown-item" href="#">Meme1</a></li>
+            <li><a class="dropdown-item" href="#">Meme2</a></li>
+            <li><a class="dropdown-item" href="#">Meme3</a></li>
+          </ul>
+        </div>
+        <button type="button" id="upload" class="btn btn-primary ms-1 text-nowrap">
+          Upload Image
+        </button>
+      </div>
+      <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" width="500" height="300">
+      <div class = "d-flex">
+        <label for="inputForm" class="col-sm-2 form-label">텍스트</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputForm" placeholder="Text Field">
+        </div>
+      </div>
+      <div class = "d-flex">
+        <label for="fontSelect" class="col-sm-2 form-label">폰트</label>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="fontSelect" data-bs-toggle="dropdown" aria-expanded="false">
+              폰트 선택
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="fontSelect">
+              <li><a class="dropdown-item" href="#">맑은 고딕</a></li>
+              <li><a class="dropdown-item" href="#">궁서</a></li>
+              <li><a class="dropdown-item" href="#">고딕</a></li>
+            </ul>
+        </div>
+      </div>
+      <div class = "d-flex">
+        <label for="fontSizeSelect" class="col-sm-2 form-label">폰트 사이즈</label>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="fontSizeSelect" data-bs-toggle="dropdown" aria-expanded="false">
+            폰트 사이즈 선택
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="fontSizeSelect">
+            <li><a class="dropdown-item" href="#">10</a></li>
+            <li><a class="dropdown-item" href="#">20</a></li>
+            <li><a class="dropdown-item" href="#">30</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class = "d-flex">
+        <label for="fontBoldSelect" class="col-sm-2 form-label">폰트 두께</label>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="fontBoldSelect" data-bs-toggle="dropdown" aria-expanded="false">
+            폰트 두께 선택
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="fontBoldSelect">
+            <li><a class="dropdown-item" href="#">얇음</a></li>
+            <li><a class="dropdown-item" href="#">보통</a></li>
+            <li><a class="dropdown-item" href="#">굵음</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
