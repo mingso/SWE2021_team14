@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title>Meme Generator</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="index.js"></script>
 	  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -20,65 +23,54 @@
     <div class="container">
       <h2>Meme 생성기</h2>
       <div class = "d-flex align-items-center">
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownImage" data-bs-toggle="dropdown" aria-expanded="false">
-            Select Meme
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownImage">
-            <li><a class="dropdown-item" href="#">Meme1</a></li>
-            <li><a class="dropdown-item" href="#">Meme2</a></li>
-            <li><a class="dropdown-item" href="#">Meme3</a></li>
-          </ul>
+        <div class="dropdown meme-select" >
+          <select class="form-select memeSelect" aria-label="Default select example">
+            <option value="meme1">말대꾸?</option>
+            <option value="meme2">개비스콘</option>
+            <option value="meme3">Meme3</option>
+          </select>
         </div>
         <button type="button" id="upload" class="btn btn-primary ms-1 text-nowrap">
           Upload Image
         </button>
       </div>
-      <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" width="500" height="300">
+      <canvas id="canvas" width="500" height="800"></canvas>
       <div class = "d-flex">
         <label for="inputForm" class="col-sm-2 form-label">텍스트</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputForm" placeholder="Text Field">
+          <input type="text" class="form-control" id="inputForm" placeholder="">
+            <!-- @input="onValueChanged('text', $event.target.value)" -->
         </div>
       </div>
       <div class = "d-flex">
         <label for="fontSelect" class="col-sm-2 form-label">폰트</label>
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="fontSelect" data-bs-toggle="dropdown" aria-expanded="false">
-              폰트 선택
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="fontSelect">
-              <li><a class="dropdown-item" href="#">맑은 고딕</a></li>
-              <li><a class="dropdown-item" href="#">궁서</a></li>
-              <li><a class="dropdown-item" href="#">고딕</a></li>
-            </ul>
+        <div>
+          <select class="form-select fontSelect" id="fontSelect" aria-label="Default select example">
+            <option value="MalgunGothic">맑은 고딕</option>
+            <option value="Gungseo">궁서</option>
+            <option value="Gothic">고딕</option>
+          </select>
         </div>
       </div>
       <div class = "d-flex">
         <label for="fontSizeSelect" class="col-sm-2 form-label">폰트 사이즈</label>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="fontSizeSelect" data-bs-toggle="dropdown" aria-expanded="false">
-            폰트 사이즈 선택
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="fontSizeSelect">
-            <li><a class="dropdown-item" href="#">10</a></li>
-            <li><a class="dropdown-item" href="#">20</a></li>
-            <li><a class="dropdown-item" href="#">30</a></li>
-          </ul>
-        </div>
+          <div>
+            <select class="form-select fontSizeSelect" id="fontSizeSelect" aria-label="Default select example">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+            </select>
+          </div>
       </div>
       <div class = "d-flex">
         <label for="fontBoldSelect" class="col-sm-2 form-label">폰트 두께</label>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="fontBoldSelect" data-bs-toggle="dropdown" aria-expanded="false">
-            폰트 두께 선택
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="fontBoldSelect">
-            <li><a class="dropdown-item" href="#">얇음</a></li>
-            <li><a class="dropdown-item" href="#">보통</a></li>
-            <li><a class="dropdown-item" href="#">굵음</a></li>
-          </ul>
-        </div>
+          <div>
+            <select class="form-select fontBoldSelect" id="fontBoldSelect" aria-label="Default select example">
+              <option value="light">얇음</option>
+              <option value="normal">보통</option>
+              <option value="bold">굵음</option>
+            </select>
+          </div>
       </div>
     </div>
   </body>
