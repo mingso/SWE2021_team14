@@ -8,10 +8,12 @@ function getImageHeight(img) {
 
 function draw(imgSrc) {
   var img = new Image();
-  var ctx = document.getElementById('canvas').getContext('2d');
+  var cvs = document.getElementById('canvas')
+  var ctx = cvs.getContext('2d');
   img.src = imgSrc;
 
   height = getImageHeight(img);
+  cvs.height = height;
   ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, 500, height);
 }
 
@@ -83,18 +85,27 @@ function drawText3(text) {
   ctx.font = `${textSetting['fontWeight']} ${textSetting['fontSize']}px ${textSetting['fontFamily']}`;
 
   let lines = text.split('/');
+  let coordinates = [canvas.width / 4, (canvas.height/2) - 30, (canvas.width * 3) / 4, (canvas.height/2) - 30,  canvas.width / 4, canvas.height - 30,  (canvas.width * 3) / 4, canvas.height - 30]
   lines.forEach((line, index) => {
-    
-  })
+      ctx.strokeStyle = '#000000'
+      ctx.strokeText(
+        line, coordinates[index * 2], coordinates[index * 2 + 1],
+      )
+
+      ctx.fillStyle = textSetting['fontColor'];
+      ctx.fillText(
+        line, coordinates[index * 2], coordinates[index * 2 + 1],
+      );
+    })
 }
 
 
 var memeIndex = 0;
-var memeImages = ["./meme_image/말대꾸.png", "./meme_image/개비스콘.jpg", "./meme_image/개비스콘.jpg"];
+var memeImages = ["./meme_image/말대꾸.png", "./meme_image/개비스콘.jpg", "./meme_image/아나킨파드메.jpg"];
 textSetting = {};
 textSetting['imageIndex'] = memeIndex;
 textSetting['fontFamily'] = 'MalgunGothic';
-textSetting['fontSize'] = 30;
+textSetting['fontSize'] = 10;
 textSetting['fontColor'] = '#000000';
 textSetting['fontWeight'] = 'normal';
 
@@ -103,7 +114,8 @@ window.onload = function() {
   var inputform = document.getElementById('inputForm');
   var ctx = document.getElementById('canvas').getContext('2d');
 
-  draw("./meme_image/말대꾸.png")
+  draw(memeImages[memeIndex]);
+  inputform.placeholder="ㅁㅁ가/말대꾸?";
 
   $('.form-select.memeSelect').on('change', function () {
     var selected = $('.form-select.memeSelect option:selected').val();
@@ -123,6 +135,7 @@ window.onload = function() {
       case 'meme3':
         memeIndex = 2;
         draw(memeImages[memeIndex]);
+        inputform.placeholder="난 세상을 바꿔보려고 해./더 좋게 바꾸려는거지?//더 좋게 바꾸려는거 맞지?";
         textSetting['fontColor'] = '#FFFFFF';
         break;
     }
