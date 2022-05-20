@@ -6,10 +6,11 @@ function getImageHeight(img) {
   return parseInt(height * ratio);
 }
 
-function draw(img) {
+function draw(imgSrc) {
+  var img = new Image();
   var cvs = document.getElementById('canvas')
   var ctx = cvs.getContext('2d');
-
+  img.src = imgSrc;
 
   height = getImageHeight(img);
   cvs.height = height;
@@ -113,12 +114,8 @@ window.onload = function() {
 
   var inputform = document.getElementById('inputForm');
   var ctx = document.getElementById('canvas').getContext('2d');
-  var img = new Image(); 
-  img.onload = function(){
-    draw(img);
-  };
-  img.src = memeImages[memeIndex];
 
+  draw(memeImages[memeIndex]);
   inputform.placeholder="ㅁㅁ가/말대꾸?";
 
   $('.form-select.memeSelect').on('change', function () {
@@ -126,28 +123,19 @@ window.onload = function() {
     switch(selected) {
       case 'meme1':
         memeIndex = 0;
-        img.onload = function(){
-          draw(img);
-        };
-        img.src = memeImages[memeIndex];
+        draw(memeImages[memeIndex])
         inputform.placeholder="ㅁㅁ가/말대꾸?";
         textSetting['fontColor'] = '#000000';
         break;
       case 'meme2':
         memeIndex = 1;
-        img.onload = function(){
-          draw(img);
-        };
-        img.src = memeImages[memeIndex];
+        draw(memeImages[memeIndex]);
         inputform.placeholder="야근,직장상사/퇴사";
         textSetting['fontColor'] = '#FFFFFF';
         break;
       case 'meme3':
         memeIndex = 2;
-        img.onload = function(){
-          draw(img);
-        };
-        img.src = memeImages[memeIndex];
+        draw(memeImages[memeIndex]);
         inputform.placeholder="난 세상을 바꿔보려고 해./더 좋게 바꾸려는거지?//더 좋게 바꾸려는거 맞지?";
         textSetting['fontColor'] = '#FFFFFF';
         break;
@@ -155,23 +143,19 @@ window.onload = function() {
   });
 
   $('.form-control').change(function() {
+    draw(memeImages[memeIndex]);
     var text = $('.form-control').val();
-    img.onload = function(){
-      draw(img);
-      switch(memeIndex) {
-        case 0:
-          drawText1(text);
-          break;
-        case 1:
-          drawText2(text);
-          break;
-        case 2:
-          drawText3(text);
-          break;
-      }
-    };
-    img.src = memeImages[memeIndex];
-    
+    switch(memeIndex) {
+      case 0:
+        drawText1(text);
+        break;
+      case 1:
+        drawText2(text);
+        break;
+      case 2:
+        drawText3(text);
+        break;
+    }
   });
 
   $('.form-select.fontSelect').on('change', function () {
@@ -179,62 +163,53 @@ window.onload = function() {
     textSetting['fontFamily'] = selected;
     console.log(selected);
     let text = document.getElementById('inputForm').value
-    img.onload = function(){
-      draw(img);
-      switch(memeIndex) {
-        case 0:
-          drawText1(text);
-          break;
-        case 1:
-          drawText2(text);
-          break;
-        case 2:
-          drawText3(text);
-          break;
-      }
-    };
-    img.src = memeImages[memeIndex];
+    draw(memeImages[memeIndex])
+    switch(memeIndex) {
+      case 0:
+        drawText1(text);
+        break;
+      case 1:
+        drawText2(text);
+        break;
+      case 2:
+        drawText3(text);
+        break;
+    }
   });
 
   $('.form-select.fontSizeSelect').on('change', function () {
     var selected = $('.form-select.fontSizeSelect option:selected').val();
     textSetting['fontSize'] = selected;
+    draw(memeImages[memeIndex])
     let text = document.getElementById('inputForm').value
-    img.onload = function(){
-      draw(img);
-      switch(memeIndex) {
-        case 0:
-          drawText1(text);
-          break;
-        case 1:
-          drawText2(text);
-          break;
-        case 2:
-          drawText3(text);
-          break;
-      }
-    };
-    img.src = memeImages[memeIndex];
+    switch(memeIndex) {
+      case 0:
+        drawText1(text);
+        break;
+      case 1:
+        drawText2(text);
+        break;
+      case 2:
+        drawText3(text);
+        break;
+    }
   });
 
   $('.form-select.fontBoldSelect').on('change', function () {
     var selected = $('.form-select.fontBoldSelect option:selected').val();
     textSetting['fontWeight'] = selected;
+    draw(memeImages[memeIndex])
     let text = document.getElementById('inputForm').value
-    img.onload = function(){
-      draw(img);
-      switch(memeIndex) {
-        case 0:
-          drawText1(text);
-          break;
-        case 1:
-          drawText2(text);
-          break;
-        case 2:
-          drawText3(text);
-          break;
-      }
-    };
-    img.src = memeImages[memeIndex];
+    switch(memeIndex) {
+      case 0:
+        drawText1(text);
+        break;
+      case 1:
+        drawText2(text);
+        break;
+      case 2:
+        drawText3(text);
+        break;
+    }
   });
 }
