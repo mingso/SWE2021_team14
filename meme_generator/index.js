@@ -237,4 +237,14 @@ window.onload = function() {
     };
     img.src = memeImages[memeIndex];
   });
+
+  var image_input = document.querySelector("#upload_image");
+
+  image_input.addEventListener('change', (event)=>{
+    img.onload = function(){
+      draw(img);
+    }
+    img.src = URL.createObjectURL(event.target.files[0]);
+  });
+  
 }
