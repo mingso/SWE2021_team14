@@ -15,14 +15,7 @@ function draw(img) {
   ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, 500, height);
 }
 
-function drawText1(text) {
-  var ctx = document.getElementById('canvas').getContext('2d');
-
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.font = `${textSetting['fontWeight']} ${textSetting['fontSize']}px ${textSetting['fontFamily']}`;
-  console.log(ctx.font);
-
+function drawText1(ctx, text) {
   let lines = text.split('/');
   lines.forEach((line, index) => {
     ctx.fillStyle = textSetting['fontColor'];
@@ -34,17 +27,10 @@ function drawText1(text) {
   });
 }
 
-function drawText2(text) {
-  var ctx = document.getElementById('canvas').getContext('2d');
-
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.font = `${textSetting['fontWeight']} ${textSetting['fontSize']}px ${textSetting['fontFamily']}`;
-
+function drawText2(ctx, text) {
+  ctx.lineWidth = 4;
   let lines = text.split('/');
 
-  console.log(textSetting['fontColor']);
-  ctx.lineWidth = 4;
   lines.forEach((line, index) => {
     if (index === 0) {
       let words = line.split(',');
@@ -58,7 +44,6 @@ function drawText2(text) {
       });
     } else if (index === 1) {
       ctx.strokeStyle = '#75b9ff';
-
       ctx.strokeText(line, canvas.width / 2 + 10, 600);
 
       ctx.fillStyle = textSetting['fontColor'];
@@ -67,23 +52,15 @@ function drawText2(text) {
   });
 }
 
-function drawText3(text) {
-  var ctx = document.getElementById('canvas').getContext('2d');
-
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.font = `${textSetting['fontWeight']} ${textSetting['fontSize']}px ${textSetting['fontFamily']}`;
+function drawText3(ctx, text) {
+  ctx.lineWidth = 4;
 
   let lines = text.split('/');
   let coordinates = [
-    canvas.width / 4,
-    canvas.height / 2 - 30,
-    (canvas.width * 3) / 4,
-    canvas.height / 2 - 30,
-    canvas.width / 4,
-    canvas.height - 30,
-    (canvas.width * 3) / 4,
-    canvas.height - 30,
+    canvas.width / 4, canvas.height / 2 - 30,
+    (canvas.width * 3) / 4, canvas.height / 2 - 30,
+    canvas.width / 4, canvas.height - 30,
+    (canvas.width * 3) / 4, canvas.height - 30,
   ];
   lines.forEach((line, index) => {
     ctx.strokeStyle = '#000000';
@@ -92,6 +69,41 @@ function drawText3(text) {
     ctx.fillStyle = textSetting['fontColor'];
     ctx.fillText(line, coordinates[index * 2], coordinates[index * 2 + 1]);
   });
+}
+
+function drawText4(ctx, text) {
+  ctx.lineWidth = 4;
+
+  ctx.strokeStyle = '#000000';
+  ctx.strokeText(text, canvas.width / 2, canvas.height - 30);
+
+  ctx.fillStyle = textSetting['fontColor'];
+  ctx.fillText(text, canvas.width / 2, canvas.height - 30);
+}
+
+function drawText(memeIndex, img, text) {
+  draw(img);
+
+  var ctx = document.getElementById('canvas').getContext('2d');
+
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.font = `${textSetting['fontWeight']} ${textSetting['fontSize']}px ${textSetting['fontFamily']}`;
+
+  switch (memeIndex) {
+    case 0:
+      drawText1(ctx, text);
+      break;
+    case 1:
+      drawText2(ctx, text);
+      break;
+    case 2:
+      drawText3(ctx, text);
+      break;
+    case 3:
+      drawText4(ctx, text);
+      break
+  }
 }
 
 var memeIndex = 0;
@@ -123,74 +135,43 @@ window.onload = function () {
     switch (selected) {
       case 'meme1':
         memeIndex = 0;
-        img.onload = function () {
-          draw(img);
-        };
-        img.src = memeImages[memeIndex];
         inputform.placeholder = 'ㅁㅁ가/말대꾸?';
         textSetting['fontColor'] = '#000000';
         break;
       case 'meme2':
         memeIndex = 1;
-        img.onload = function () {
-          draw(img);
-        };
-        img.src = memeImages[memeIndex];
         inputform.placeholder = '야근,직장상사/퇴사';
         textSetting['fontColor'] = '#FFFFFF';
         break;
       case 'meme3':
         memeIndex = 2;
-        img.onload = function () {
-          draw(img);
-        };
-        img.src = memeImages[memeIndex];
         inputform.placeholder =
           '난 세상을 바꿔보려고 해./더 좋게 바꾸려는거지?//더 좋게 바꾸려는거 맞지?';
         textSetting['fontColor'] = '#FFFFFF';
         break;
     }
+    img.onload = function () {
+      draw(img);
+    };
+    img.src = memeImages[memeIndex];
   });
 
   $('.form-control').change(function () {
     var text = $('.form-control').val();
     img.onload = function () {
-      draw(img);
-      switch (memeIndex) {
-        case 0:
-          drawText1(text);
-          break;
-        case 1:
-          drawText2(text);
-          break;
-        case 2:
-          drawText3(text);
-          break;
-      }
+      drawText(memeIndex, img, text);
     };
-    img.src = memeImages[memeIndex];
+    img.src = img.src;
   });
 
   $('.form-select.fontSelect').on('change', function () {
     var selected = $('.form-select.fontSelect option:selected').val();
     textSetting['fontFamily'] = selected;
-    console.log(selected);
     let text = document.getElementById('inputForm').value;
     img.onload = function () {
-      draw(img);
-      switch (memeIndex) {
-        case 0:
-          drawText1(text);
-          break;
-        case 1:
-          drawText2(text);
-          break;
-        case 2:
-          drawText3(text);
-          break;
-      }
+      drawText(memeIndex, img, text);
     };
-    img.src = memeImages[memeIndex];
+    img.src = img.src;
   });
 
   $('.form-select.fontSizeSelect').on('change', function () {
@@ -198,20 +179,9 @@ window.onload = function () {
     textSetting['fontSize'] = selected;
     let text = document.getElementById('inputForm').value;
     img.onload = function () {
-      draw(img);
-      switch (memeIndex) {
-        case 0:
-          drawText1(text);
-          break;
-        case 1:
-          drawText2(text);
-          break;
-        case 2:
-          drawText3(text);
-          break;
-      }
+      drawText(memeIndex, img, text);
     };
-    img.src = memeImages[memeIndex];
+    img.src = img.src;
   });
 
   $('.form-select.fontBoldSelect').on('change', function () {
@@ -219,20 +189,9 @@ window.onload = function () {
     textSetting['fontWeight'] = selected;
     let text = document.getElementById('inputForm').value;
     img.onload = function () {
-      draw(img);
-      switch (memeIndex) {
-        case 0:
-          drawText1(text);
-          break;
-        case 1:
-          drawText2(text);
-          break;
-        case 2:
-          drawText3(text);
-          break;
-      }
+      drawText(memeIndex, img, text);
     };
-    img.src = memeImages[memeIndex];
+    img.src = img.src;
   });
 
   var image_input = document.querySelector('#upload_image');
@@ -242,5 +201,8 @@ window.onload = function () {
       draw(img);
     };
     img.src = URL.createObjectURL(event.target.files[0]);
+    inputform.placeholder = '텍스트를 입력하세요.';
+    memeIndex = 3;
+    textSetting['fontColor'] = '#FFFFFF';
   });
 };
