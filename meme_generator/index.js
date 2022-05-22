@@ -206,3 +206,13 @@ window.onload = function () {
     textSetting['fontColor'] = '#FFFFFF';
   });
 };
+
+function download(){
+  let downloadLink = document.createElement('a');
+  downloadLink.setAttribute('download', 'CanvasAsImage.png');
+  let canvas = document.getElementById('canvas');
+  let dataURL = canvas.toDataURL('image/png');
+  let url = dataURL.replace('image/png','data:application/octet-stream');
+  downloadLink.setAttribute('href', url);
+  downloadLink.click();
+};
