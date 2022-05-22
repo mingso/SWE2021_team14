@@ -10,18 +10,27 @@
     <script type="text/javascript" src="index.js"></script>
 	  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 		</script>
     <style>
+    
+      body{
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+      }
       .container{
-        width: 500px;
+        width: 550px;
       }
     </style>
   </head>
   <body>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+          <span class="navbar-brand mb-0 h1 fs-2"><i class="bi bi-palette fs-3"></i>&nbsp;Meme 생성기</span>
+      </div>
+  </nav>
     <div class="container">
-      <h2>Meme 생성기</h2>
       <div class = "d-flex align-items-center">
         <div class="dropdown meme-select" >
           <select class="form-select memeSelect" aria-label="Default select example">
@@ -32,7 +41,7 @@
         </div>
         <input type="file" id="upload_image" class="upload_image" accept="image/*">
       </div>
-      <canvas id="canvas" width="500" height="800"></canvas>
+      <canvas id="canvas" width="500" height="800" ></canvas>
       <div class = "d-flex">
         <label for="inputForm" class="col-sm-2 form-label">텍스트</label>
         <div class="col-sm-10">
