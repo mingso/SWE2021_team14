@@ -1,3 +1,6 @@
+# Meme Generator
+[바로가기](https://mingso.github.io/SWE2021_team14/meme_generator/)
+
 # 1. Contact Information
 ### Team 14
 - 김기웅(2021310624) : tom777416@gmail.com
@@ -36,6 +39,3 @@ Web Page.
 - 이미지에 텍스트 띄우는 기능 : 김민서
 - 다운로드 기능 : 김기웅
 - 문서화 : 공동
-
-# 7. Pages
-[Meme Generator](https://mingso.github.io/SWE2021_team14/meme_generator/)
